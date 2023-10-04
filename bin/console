@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "shippy_pro_api"
+require "dotenv/load"
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+# (If you use this, don't forget to add pry to your Gemfile!)
+# require "pry"
+# Pry.start
+
+@client = ShippyProAPI::Client.new(api_key: ENV['SHIPPY_PRO_API_KEY'])
+puts 'A ShippyProAPI::Client is created for testing purpose'
+
+@params = {
+  to_address: {
+    name: "John Doe",
+    company: "ShippyPro",
+    street1: "172 Boulevard de la Villette",
+    street2: "19ème Arrondissement",
+    city: "Paris",
+    state: "",
+    zip: "75019",
+    country: "FR",
+    phone: "+33186652533",
+    email: "johndoe@gmail.com"
+  },
+  from_address: {
+    name: "Jane Doe",
+    company: "ProShippy",
+    street1: "198 Avenue de France",
+    street2: "",
+    city: "Paris",
+    state: "",
+    zip: "75013",
+    country: "FR",
+    phone: "+33186652533",
+    email: "janedoe@gmail.com"
+  },
+  parcels: [
+    {
+      length: 5,
+      width: 5,
+      height: 5,
+      weight: 10
+    }
+  ],
+  insurance: 0,
+  insurance_currency: "EUR",
+  cash_on_delivery: 0,
+  cash_on_delivery_currency: "EUR",
+  content_description: "Shoes",
+  total_value: "50.25 EUR",
+  shipping_service: "Standard"
+}
+
+require "irb"
+IRB.start(__FILE__)
